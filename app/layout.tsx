@@ -1,5 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { headers } from 'next/headers';
+import 'server-only';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,8 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const lang = headers().get('x-language') || 'en';
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body className={inter.className}>{children}</body>
     </html>
   )
